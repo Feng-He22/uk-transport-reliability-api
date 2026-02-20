@@ -33,3 +33,4 @@ class Incident(Base):
     geo_lng: Mapped[float | None] = mapped_column(Float, nullable=True)
 
     raw_payload: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    fingerprint: Mapped[str] = mapped_column(String(64), unique=True, index=True)

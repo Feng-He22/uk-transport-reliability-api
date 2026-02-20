@@ -19,13 +19,19 @@ async def sync_tfl(db: Session = Depends(get_db)):
     normalized = normalize_tfl_line_status(payload)
 
     created = 0
+    skipped = 0
+
     for item in normalized:
-        incident_svc.create_incident(db, IncidentCreate(**item))
-        created += 1
+        res = incident_svc.create_incident(db, IncidentCreate(**item))
+        if res is None:
+            skipped += 1
+        else:
+            created += 1
 
     return {
         "source": "tfl",
         "fetched_lines": len(payload),
         "created_incidents": created,
+        "skipped_duplicates": skipped,
         "note": "Only non-Good Service statuses are stored as incidents.",
     }

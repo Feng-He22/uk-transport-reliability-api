@@ -5,14 +5,19 @@ from uuid import UUID
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import IntegrityError
 
 from app.models.incident import Incident
 from app.schemas.incident import IncidentCreate, IncidentUpdate
 
-def create_incident(db: Session, data: IncidentCreate) -> Incident:
+def create_incident(db: Session, data: IncidentCreate):
     obj = Incident(**data.model_dump())
     db.add(obj)
-    db.commit()
+    try:
+        db.commit()
+    except IntegrityError:
+        db.rollback()
+        return None
     db.refresh(obj)
     return obj
 

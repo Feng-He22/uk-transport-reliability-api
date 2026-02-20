@@ -26,6 +26,7 @@ class IncidentBase(BaseModel):
     geo_lng: Optional[float] = None
 
     raw_payload: Optional[dict[str, Any]] = None
+    fingerprint: str = Field(..., max_length=64)
 
 
 class IncidentCreate(IncidentBase):
