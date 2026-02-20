@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:16
+    container_name: ukrel_db
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: ukrel
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  api:
+    build: .
+    container_name: ukrel_api
+    environment:
+      DATABASE_URL: postgresql+psycopg2://app:app@db:5432/ukrel
+      APP_ENV: dev
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+
+volumes:
+  pgdata:
