@@ -141,5 +141,4 @@ DATABASE_URL=postgresql+psycopg2://app:app@db:5432/ukrel
 
 ---
 
-## License
-For coursework use.
+
