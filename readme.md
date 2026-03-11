@@ -141,4 +141,9 @@ DATABASE_URL=postgresql+psycopg2://app:app@db:5432/ukrel
 
 ---
 
+## MCP Demo (Agent-ready tools)
 
+Run the MCP demo client inside Docker:
+
+```bash
+docker compose exec -e API_BASE=http://api:8000 api python3 -m mcp_server.demo_call
