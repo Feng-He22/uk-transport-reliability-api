@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 
 import requests
 
-BASE_URL = "http://localhost:8000"
+BASE_URL = "https://meowcolate.pythonanywhere.com"
 
 ADMIN_USERNAME = "admin"
 ADMIN_PASSWORD = "admin123"
