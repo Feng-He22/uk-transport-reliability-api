@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 
 import requests
 
-BASE_URL = "http://localhost:8000"
+BASE_URL = "https://meowcolate.pythonanywhere.com"
 
 ADMIN_USERNAME = "admin"
 ADMIN_PASSWORD = "admin123"
@@ -12,7 +12,8 @@ ADMIN_PASSWORD = "admin123"
 def login_and_get_token(username=ADMIN_USERNAME, password=ADMIN_PASSWORD) -> str:
     resp = requests.post(
         f"{BASE_URL}/auth/login",
-        json={"username": username, "password": password},
+        data={"username": username, "password": password},
+        headers={"Content-Type": "application/x-www-form-urlencoded"},
         timeout=10,
     )
     assert resp.status_code == 200, f"Login failed: {resp.text}"
@@ -50,7 +51,8 @@ def test_health():
 def test_login_success():
     resp = requests.post(
         f"{BASE_URL}/auth/login",
-        json={"username": ADMIN_USERNAME, "password": ADMIN_PASSWORD},
+        data={"username": ADMIN_USERNAME, "password": ADMIN_PASSWORD},
+        headers={"Content-Type": "application/x-www-form-urlencoded"},
         timeout=10,
     )
     assert resp.status_code == 200
@@ -63,7 +65,8 @@ def test_login_success():
 def test_login_failure():
     resp = requests.post(
         f"{BASE_URL}/auth/login",
-        json={"username": ADMIN_USERNAME, "password": "wrongpassword"},
+        data={"username": ADMIN_USERNAME, "password": "wrongpassword"},
+        headers={"Content-Type": "application/x-www-form-urlencoded"},
         timeout=10,
     )
     assert resp.status_code in (401, 403)
@@ -191,7 +194,6 @@ def test_patch_incident_success():
     updated = patch_resp.json()
 
     assert updated["status"] == "resolved"
-    # assert updated["description"] == "updated by pytest"
 
 
 def test_delete_incident_admin_success():
@@ -237,10 +239,6 @@ def test_create_incident_validation_error():
     assert resp.status_code == 422
 
 
-# ---------- Analytics ----------
-
-
-
 def test_analytics_reliability():
     resp = requests.get(
         f"{BASE_URL}/analytics/reliability",
@@ -280,10 +278,6 @@ def test_analytics_anomalies():
     assert resp.status_code == 200, resp.text
 
 
-# ---------- Sync ----------
-
-
-
 def test_sync_endpoint_with_auth_if_required():
     token = login_and_get_token()
     resp = requests.post(
@@ -292,10 +286,6 @@ def test_sync_endpoint_with_auth_if_required():
         timeout=30,
     )
     assert resp.status_code in (200, 201, 202, 204, 404, 405), resp.text
-
-
-# ---------- Devtools ----------
-
 
 
 def test_devtools_endpoint_if_present():
