@@ -339,7 +339,6 @@ This exposes the API through callable tool-style operations for demonstration of
 
 - `/dev/*` endpoints are intended only for demonstration and development use.
 - TfL ingestion intentionally stores only disrupted service states rather than normal service states.
-- The repository version should match the version demonstrated during the oral presentation.
 
 ---
 
