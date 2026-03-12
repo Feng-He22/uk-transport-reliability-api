@@ -59,6 +59,11 @@ A live deployment of the API is available on PythonAnywhere:
 ### Agent-Ready Extension
 - MCP demo client support is included so the API can be exposed as callable tools for external agent workflows
 
+- **Security**
+  - JWT-based authentication for protected endpoints
+  - Role-based access control
+  - Security headers middleware
+
 ---
 
 ## Tech Stack
