@@ -59,6 +59,11 @@ A live deployment of the API is available on PythonAnywhere:
 ### Agent-Ready Extension
 - MCP demo client support is included so the API can be exposed as callable tools for external agent workflows
 
+### Security
+  - JWT-based authentication for protected endpoints
+  - Role-based access control
+  - Security headers middleware
+
 ---
 
 ## Tech Stack
@@ -334,7 +339,6 @@ This exposes the API through callable tool-style operations for demonstration of
 
 - `/dev/*` endpoints are intended only for demonstration and development use.
 - TfL ingestion intentionally stores only disrupted service states rather than normal service states.
-- The repository version should match the version demonstrated during the oral presentation.
 
 ---
 
