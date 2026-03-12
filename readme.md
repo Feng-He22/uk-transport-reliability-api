@@ -1,4 +1,4 @@
-# UK Transport Reliability API (MCP-ready)
+# UK Transport Reliability API 
 
 A data-driven REST API for collecting, storing, and analysing UK transport disruption incidents. The project combines standard CRUD functionality with external data ingestion, database-backed persistence, analytics endpoints, and MCP-compatible tooling for agent-oriented access.
 
