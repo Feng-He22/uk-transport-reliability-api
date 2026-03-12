@@ -21,6 +21,19 @@ The system is intended to demonstrate both core web API engineering and a more c
 
 ---
 
+## Live Deployment
+
+A live deployment of the API is available on PythonAnywhere:
+
+- **Base URL:** `https://meowcolate.pythonanywhere.com`
+- **Swagger UI:** `https://meowcolate.pythonanywhere.com/docs`
+- **OpenAPI JSON:** `https://meowcolate.pythonanywhere.com/openapi.json`
+- **Health check:** `https://meowcolate.pythonanywhere.com/health`
+
+> Note: the production deployment on PythonAnywhere uses SQLite for simplicity of hosting, while local development via Docker uses PostgreSQL.
+
+---
+
 ## Main Features
 
 ### Core API
