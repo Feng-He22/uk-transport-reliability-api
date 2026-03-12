@@ -21,8 +21,6 @@ The system is intended to demonstrate both core web API engineering and a more c
 
 ---
 
----
-
 ## Live Deployment
 
 A live deployment of the API is available on PythonAnywhere:
